@@ -13,7 +13,7 @@ const CardList = ({ robots }) => {
       />
     );
   });
-  return <div>{cardComponent};</div>;
+  return <div>{cardComponent}</div>;
 };
 
 export default CardList;
