@@ -12,7 +12,7 @@ const CardList = ({ robots }) => {
         id={user.id}
         name={user.name}
         email={user.email}
-        username={robots.username}
+        username={user.username}
       />
     );
   });
