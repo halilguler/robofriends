@@ -1,13 +1,36 @@
-import { CHANGE_SEARCH_FIELD } from "../constants/";
-export const INITIAL_STATE = {
+import {
+  CHANGE_SEARCH_FIELD,
+  REQUEST_ROBOTS_PENDING,
+  REQUEST_ROBOTS_SUCCESS,
+  REQUEST_ROBOTS_FAILED
+} from "../constants/";
+export const INITIAL_STATE_SEARCH = {
+  robots: [],
   searchField: ""
 };
-
-export const searchRobots = (state = INITIAL_STATE, action = {}) => {
+export const INITIAL_STATE_ROBOTS ={
+  robots:[],
+  isPending:false,
+  error:''
+}
+export const searchRobots = (state = INITIAL_STATE_SEARCH, action = {}) => {
   switch (action.type) {
     case CHANGE_SEARCH_FIELD:
-      return {...state, searchField:action.payload };
+      return { ...state, searchField: action.payload };
     default:
       return state;
+  }
+};
+
+export const requestRobots = (state = INITIAL_STATE_ROBOTS, action = {}) => {
+  switch (action.type) {
+    case REQUEST_ROBOTS_PENDING:
+      return { ...state , isPending:true };
+    case REQUEST_ROBOTS_SUCCESS:
+      return { ...state, robots: action.payload, isPending:false };
+    case REQUEST_ROBOTS_FAILED:
+      return { ...state, error: action.payload, isPending:false };
+    default:
+      return { ...state };
   }
 };
